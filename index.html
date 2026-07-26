@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INVENTO | Ingeniería Electrónica y Automatización</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #06121f;
+            --bg-soft: #0e1b2f;
+            --panel: rgba(255,255,255,0.06);
+            --panel-strong: rgba(255,255,255,0.1);
+            --text: #f7fbff;
+            --muted: #b5c2d6;
+            --cyan: #2dd4ff;
+            --cyan-strong: #13a8cf;
+            --orange: #ff9f1c;
+            --green: #34d399;
+            --border: rgba(255,255,255,0.13);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: radial-gradient(circle at top left, rgba(45,212,255,0.16), transparent 28%), var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+            pointer-events: none;
+            z-index: -1;
+        }
+        h1, h2, h3, .logo { font-family: 'Poppins', sans-serif; }
+        img { max-width: 100%; display: block; }
+        a { color: inherit; text-decoration: none; }
+        section { padding: 100px 7%; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .section-title { font-size: 2rem; margin-bottom: 12px; color: #ffffff; }
+        .section-subtitle { color: var(--cyan); text-transform: uppercase; letter-spacing: 0.25em; font-size: 0.8rem; margin-bottom: 8px; font-weight: 700; }
+        .muted { color: var(--muted); }
+        .reveal { opacity: 0; transform: translateY(24px); transition: all 0.8s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        header {
+            position: fixed; top: 0; left: 0; right: 0;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 18px 7%; background: rgba(7,17,31,0.82); backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border); z-index: 1000;
+        }
+        .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; }
+        .logo img { width: 44px; height: 44px; border-radius: 12px; object-fit: cover; }
+        .logo span { color: var(--cyan); }
+        nav ul { display: flex; list-style: none; gap: 24px; }
+        nav a { color: var(--muted); transition: color 0.3s ease; }
+        nav a:hover { color: var(--cyan); }
+        .btn-nav, .btn-primary, .btn-secondary {
+            display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; font-weight: 600; transition: all 0.3s ease;
+        }
+        .btn-nav {
+            padding: 10px 18px; background: var(--orange); color: #07111f;
+        }
+        .btn-nav:hover { transform: translateY(-2px); background: #ffca4b; }
+
+        .hero {
+            min-height: 100vh; display: grid; align-items: center; padding-top: 140px;
+            background: linear-gradient(90deg, rgba(7,17,31,0.98) 0%, rgba(7,17,31,0.86) 55%, rgba(7,17,31,0.5) 100%),
+                        url('Banner.png') center/cover no-repeat;
+        }
+        .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; }
+        .hero h1 { font-size: clamp(2.5rem, 4.6vw, 4.7rem); line-height: 1.08; margin-bottom: 20px; }
+        .hero .eyebrow { color: var(--cyan); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.3em; margin-bottom: 16px; }
+        .hero p { font-size: 1.05rem; color: var(--muted); max-width: 640px; margin-bottom: 28px; }
+        .hero .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 34px; }
+        .hero .tags span { padding: 8px 12px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); font-size: 0.92rem; }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; }
+        .btn-primary { padding: 14px 24px; background: var(--orange); color: #07111f; }
+        .btn-primary:hover { transform: translateY(-2px); background: #ffc84a; }
+        .btn-secondary { padding: 14px 24px; color: var(--text); border: 1px solid var(--border); background: rgba(255,255,255,0.03); }
+        .btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
+        .hero-card {
+            padding: 26px; border-radius: 24px; background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+            border: 1px solid var(--border); box-shadow: 0 18px 60px rgba(0,0,0,0.28);
+        }
+        .hero-card img { border-radius: 20px; height: 360px; object-fit: cover; }
+
+        .about { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .about img { border-radius: 24px; height: 420px; object-fit: cover; box-shadow: 0 18px 40px rgba(0,0,0,0.28); }
+        .about p { margin-top: 16px; color: var(--muted); }
+
+        .services-grid, .projects-grid, .testimonials-grid, .why-grid { display: grid; gap: 24px; }
+        .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .card {
+            padding: 28px; border-radius: 24px; background: var(--panel); border: 1px solid var(--border);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover { transform: translateY(-6px); border-color: var(--cyan); box-shadow: 0 16px 40px rgba(0,0,0,0.18); }
+        .icon {
+            width: 48px; height: 48px; display: grid; place-items: center; border-radius: 14px;
+            background: linear-gradient(135deg, rgba(36,226,255,0.2), rgba(36,226,255,0.06)); color: var(--cyan); margin-bottom: 16px;
+        }
+        .card h3 { margin-bottom: 8px; }
+        .card p { color: var(--muted); }
+        .service-image { margin-top: 18px; border-radius: 18px; height: 200px; object-fit: cover; }
+
+        .process { position: relative; padding-top: 30px; }
+        .process::before { content: ''; position: absolute; left: 50%; top: 28px; bottom: 28px; width: 2px; background: linear-gradient(to bottom, var(--cyan), transparent); transform: translateX(-50%); }
+        .process-steps { display: grid; gap: 18px; }
+        .process-step { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; }
+        .step-box { padding: 18px 22px; background: var(--panel); border: 1px solid var(--border); border-radius: 16px; }
+        .step-box h4 { margin-bottom: 6px; }
+        .step-dot { width: 16px; height: 16px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 0 8px rgba(36,226,255,0.16); }
+        .process-step:nth-child(odd) .step-box { text-align: right; }
+
+        .projects-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .project-card { padding: 0; overflow: hidden; }
+        .project-card img { height: 220px; object-fit: cover; }
+        .project-body { padding: 22px; }
+        .project-body .tech-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 14px; }
+        .project-body .tech-list span { padding: 6px 10px; border-radius: 999px; background: rgba(36,226,255,0.12); color: var(--cyan); font-size: 0.8rem; }
+        .project-meta { display: flex; justify-content: space-between; color: var(--muted); font-size: 0.9rem; margin-top: 12px; }
+        .status { color: var(--green); font-weight: 600; }
+
+        .stats { background: linear-gradient(135deg, rgba(7,17,31,0.95), rgba(11,31,56,0.95)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+        .stat-card { padding: 24px; text-align: center; border-radius: 18px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); }
+        .stat-number { font-size: 2rem; font-weight: 800; color: var(--cyan); margin-bottom: 6px; }
+
+        .tech-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+        .tech-pill { padding: 16px; text-align: center; border-radius: 18px; background: var(--panel); border: 1px solid var(--border); color: var(--muted); }
+
+        .why-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .benefit { padding: 24px; border-radius: 20px; background: var(--panel); border: 1px solid var(--border); }
+        .benefit h3 { margin-bottom: 10px; }
+
+        .testimonials-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .testimonial { padding: 24px; border-radius: 20px; background: var(--panel); border: 1px solid var(--border); }
+        .person { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
+        .person img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+        .stars { color: var(--orange); margin-bottom: 12px; letter-spacing: 0.2em; }
+
+        .contact { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 30px; align-items: start; }
+        .contact-card, .form-card { padding: 28px; border-radius: 24px; background: var(--panel); border: 1px solid var(--border); }
+        .contact-list { display: grid; gap: 12px; margin-top: 16px; }
+        .contact-item { display: flex; align-items: center; gap: 10px; color: var(--muted); }
+        .contact-form { display: grid; gap: 14px; margin-top: 16px; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); background: rgba(255,255,255,0.04); color: var(--text); }
+        .contact-form textarea { min-height: 120px; resize: vertical; }
+        .contact-form button { border: 0; cursor: pointer; }
+
+        footer { padding: 40px 7% 60px; border-top: 1px solid var(--border); color: var(--muted); }
+        .footer-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+        .socials { display: flex; gap: 12px; color: var(--cyan); }
+
+        @media (max-width: 1024px) {
+            .hero-grid, .about, .contact { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
+            .stats-grid, .tech-grid, .testimonials-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 12px; }
+            nav ul { flex-wrap: wrap; justify-content: center; }
+            section { padding: 80px 5%; }
+            .process::before { display: none; }
+            .process-step { grid-template-columns: 1fr; }
+            .process-step:nth-child(odd) .step-box { text-align: left; }
+            .projects-grid, .stats-grid, .tech-grid, .testimonials-grid, .why-grid { grid-template-columns: 1fr; }
+            .hero { padding-top: 180px; }
+            .hero-actions { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a class="logo" href="#inicio"><img src="LOGOTIPO INVENTO.png" alt="Logo INVENTO"><span>INVENTO</span></a>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#quienes-somos">Quiénes Somos</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+        <a class="btn-nav" href="#contacto">Solicitar Cotización</a>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="container hero-grid">
+            <div class="reveal">
+                <div class="eyebrow">Ingeniería Electrónica • Automatización • Sistemas Embebidos • IoT</div>
+                <h1>INVENTO</h1>
+                <p>Desarrollo de soluciones electrónicas, automatización y mantenimiento para proyectos personales, comerciales e industriales.</p>
+                <div class="tags">
+                    <span>Prototipos</span>
+                    <span>Automatización</span>
+                    <span>IoT</span>
+                    <span>Asesoría técnica</span>
+                </div>
+                <div class="hero-actions">
+                    <a class="btn-primary" href="#contacto">Solicitar Cotización</a>
+                    <a class="btn-secondary" href="#servicios">Ver Servicios</a>
+                </div>
+            </div>
+            <div class="hero-card reveal">
+                <img src="Banner.png" alt="Laboratorio de ingeniería electrónica">
+            </div>
+        </div>
+    </section>
+
+    <section id="quienes-somos">
+        <div class="container about">
+            <div class="reveal">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80" alt="Laboratorio electrónico profesional">
+            </div>
+            <div class="reveal">
+                <p class="section-subtitle">Quiénes Somos</p>
+                <h2 class="section-title">Transformamos ideas en soluciones tecnológicas</h2>
+                <p>En INVENTO trabajamos con proyectos de electrónica y automatización de forma práctica, adaptando cada solución al alcance del cliente y a las necesidades reales del equipo o instalación. También apoyamos con diagnóstico, mantenimiento y reparación de equipos electrónicos cuando el problema requiere intervención técnica.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios">
+        <div class="container">
+            <p class="section-subtitle reveal">Servicios</p>
+            <h2 class="section-title reveal">Soluciones a medida para cada necesidad</h2>
+            <div class="services-grid" style="margin-top: 28px;">
+                <article class="card reveal">
+                    <div class="icon">⚡</div>
+                    <h3>Desarrollo Electrónico</h3>
+                    <p>Diseñamos dispositivos electrónicos personalizados, prototipos, sistemas embebidos y soluciones adaptadas a cada proyecto.</p>
+                    <img class="service-image" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80" alt="PCB y desarrollo electrónico">
+                </article>
+                <article class="card reveal">
+                    <div class="icon">🏠</div>
+                    <h3>Automatización e IoT</h3>
+                    <p>Automatizamos hogares, oficinas e industrias mediante sensores, actuadores y monitoreo remoto.</p>
+                    <img class="service-image" src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=900&q=80" alt="Casa inteligente y automatización">
+                </article>
+                <article class="card reveal">
+                    <div class="icon">🛠️</div>
+                    <h3>Servicio Técnico Electrónico</h3>
+                    <p>Diagnóstico, mantenimiento y reparación profesional de tarjetas electrónicas y equipos especializados.</p>
+                    <img class="service-image" src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=900&q=80" alt="Estación de soldadura">
+                </article>
+                <article class="card reveal">
+                    <div class="icon">🔧</div>
+                    <h3>Venta de Componentes</h3>
+                    <p>Comercializamos componentes electrónicos originales y brindamos asesoría para proyectos académicos e industriales.</p>
+                    <img class="service-image" src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=900&q=80" alt="Componentes electrónicos">
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <p class="section-subtitle reveal">Venta de componentes y soporte técnico</p>
+            <h2 class="section-title reveal">Apoyo para montaje, mantenimiento y puesta en marcha</h2>
+            <div class="services-grid" style="margin-top: 28px;">
+                <article class="card reveal">
+                    <div class="icon">📦</div>
+                    <h3>Venta de componentes</h3>
+                    <p>Asesoría y suministro de componentes electrónicos básicos y especializados para proyectos de laboratorio, academia, automatización y prototipos.</p>
+                    <ul class="muted" style="margin-top: 12px; padding-left: 18px;">
+                        <li>Microcontroladores y módulos</li>
+                        <li>Sensores y actuadores</li>
+                        <li>Conectores, cables y accesorios</li>
+                        <li>Material para prueba y montaje</li>
+                    </ul>
+                </article>
+                <article class="card reveal">
+                    <div class="icon">🧰</div>
+                    <h3>Servicios técnicos electrónicos</h3>
+                    <p>Diagnóstico, reparación y mantenimiento de placas, equipos y sistemas electrónicos con enfoque técnico y seguro.</p>
+                    <ul class="muted" style="margin-top: 12px; padding-left: 18px;">
+                        <li>Revisión de fallas y medición</li>
+                        <li>Reparación de tarjetas y módulos</li>
+                        <li>Soldadura y remoción de componentes</li>
+                        <li>Pruebas funcionales y entrega</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <p class="section-subtitle reveal">Cómo trabajamos</p>
+            <h2 class="section-title reveal">Un proceso claro desde la idea hasta la entrega</h2>
+            <div class="process" style="margin-top: 24px;">
+                <div class="process-steps">
+                    <div class="process-step reveal">
+                        <div class="step-box"><h4>Cliente</h4><p>Entendemos la necesidad y el contexto del proyecto.</p></div>
+                        <div class="step-dot"></div>
+                        <div></div>
+                    </div>
+                    <div class="process-step reveal">
+                        <div></div>
+                        <div class="step-dot"></div>
+                        <div class="step-box"><h4>Análisis del problema</h4><p>Definimos alcance, requisitos y restricciones técnicas.</p></div>
+                    </div>
+                    <div class="process-step reveal">
+                        <div class="step-box"><h4>Diseño de la solución</h4><p>Planificamos arquitectura, electrónica y lógica de control.</p></div>
+                        <div class="step-dot"></div>
+                        <div></div>
+                    </div>
+                    <div class="process-step reveal">
+                        <div></div>
+                        <div class="step-dot"></div>
+                        <div class="step-box"><h4>Desarrollo</h4><p>Construimos prototipos y soluciones funcionales.</p></div>
+                    </div>
+                    <div class="process-step reveal">
+                        <div class="step-box"><h4>Pruebas</h4><p>Validamos rendimiento, estabilidad y seguridad del sistema.</p></div>
+                        <div class="step-dot"></div>
+                        <div></div>
+                    </div>
+                    <div class="process-step reveal">
+                        <div></div>
+                        <div class="step-dot"></div>
+                        <div class="step-box"><h4>Entrega</h4><p>Entregamos una solución lista para operar y escalar.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="proyectos">
+        <div class="container">
+            <p class="section-subtitle reveal">Proyectos</p>
+            <h2 class="section-title reveal">Proyectos que combinan tecnología, funcionalidad y resultados</h2>
+            <div class="projects-grid" style="margin-top: 28px;">
+                <article class="card project-card reveal">
+                    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=900&q=80" alt="Sistema inteligente para hogar">
+                    <div class="project-body">
+                        <h3>Sistema Inteligente para Hogar</h3>
+                        <p>Control remoto de iluminación, seguridad y climatización con ESP32 y MQTT.</p>
+                        <div class="tech-list"><span>ESP32</span><span>MQTT</span><span>WiFi</span><span>Sensores</span><span>App móvil</span></div>
+                        <div class="project-meta"><span>Estado</span><span class="status">Finalizado</span></div>
+                    </div>
+                </article>
+                <article class="card project-card reveal">
+                    <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80" alt="Automatización de negocio">
+                    <div class="project-body">
+                        <h3>Automatización de Negocio</h3>
+                        <p>Mejora de procesos operativos con monitoreo en tiempo real y control automatizado.</p>
+                        <div class="tech-list"><span>PLC</span><span>IoT</span><span>Node-RED</span><span>Cloud</span></div>
+                        <div class="project-meta"><span>Tiempo</span><span>6 semanas</span></div>
+                    </div>
+                </article>
+                <article class="card project-card reveal">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="Sistema embebido personalizado">
+                    <div class="project-body">
+                        <h3>Sistema Embebido Personalizado</h3>
+                        <p>Diseño y desarrollo de un sistema a medida con integración de sensores, comunicación y control.</p>
+                        <div class="tech-list"><span>STM32</span><span>Python</span><span>FastAPI</span><span>Linux</span></div>
+                        <div class="project-meta"><span>Resultado</span><span>Alta confiabilidad</span></div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container stats-grid">
+            <div class="stat-card reveal">
+                <h3>Proyectos en curso</h3>
+                <p>Soluciones en desarrollo para automatización, monitoreo y control.</p>
+            </div>
+            <div class="stat-card reveal">
+                <h3>Soporte técnico</h3>
+                <p>Diagnóstico y reparación de equipos electrónicos con criterio técnico.</p>
+            </div>
+            <div class="stat-card reveal">
+                <h3>Asesoría en componentes</h3>
+                <p>Orientación para elegir piezas y módulos según el proyecto.</p>
+            </div>
+            <div class="stat-card reveal">
+                <h3>Enfoque práctico</h3>
+                <p>Trabajo cercano, claro y orientado a resultados reales.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <p class="section-subtitle reveal">Tecnologías</p>
+            <h2 class="section-title reveal">Herramientas con las que construimos soluciones reales</h2>
+            <div class="tech-grid" style="margin-top: 24px;">
+                <div class="tech-pill reveal">Arduino</div>
+                <div class="tech-pill reveal">ESP32</div>
+                <div class="tech-pill reveal">STM32</div>
+                <div class="tech-pill reveal">Raspberry Pi</div>
+                <div class="tech-pill reveal">Python</div>
+                <div class="tech-pill reveal">Flutter</div>
+                <div class="tech-pill reveal">FastAPI</div>
+                <div class="tech-pill reveal">MQTT</div>
+                <div class="tech-pill reveal">Node-RED</div>
+                <div class="tech-pill reveal">Linux</div>
+                <div class="tech-pill reveal">C/C++</div>
+                <div class="tech-pill reveal">KiCad</div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <p class="section-subtitle reveal">Por qué elegir INVENTO</p>
+            <h2 class="section-title reveal">Calidad, personalización y acompañamiento técnico</h2>
+            <div class="why-grid" style="margin-top: 24px;">
+                <div class="benefit reveal"><h3>Ingeniería profesional</h3><p>Enfoque técnico sólido para resolver problemas reales de forma eficiente.</p></div>
+                <div class="benefit reveal"><h3>Diseños personalizados</h3><p>Adaptamos cada solución a las necesidades del cliente y del entorno.</p></div>
+                <div class="benefit reveal"><h3>Soporte técnico</h3><p>Acompañamiento continuo antes, durante y después de la implementación.</p></div>
+                <div class="benefit reveal"><h3>Calidad garantizada</h3><p>Priorizamos confiabilidad, mantenimiento y resultados duraderos.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <p class="section-subtitle reveal">Atención técnica</p>
+            <h2 class="section-title reveal">Apoyo cercano para proyectos y equipos</h2>
+            <div class="testimonials-grid" style="margin-top: 24px;">
+                <article class="testimonial reveal">
+                    <div class="stars">●●●●●</div>
+                    <p>Revisión inicial del problema, orientación sobre la mejor alternativa técnica y propuesta de solución.</p>
+                </article>
+                <article class="testimonial reveal">
+                    <div class="stars">●●●●●</div>
+                    <p>Asesoría para compra de componentes y selección de módulos según el alcance del proyecto.</p>
+                </article>
+                <article class="testimonial reveal">
+                    <div class="stars">●●●●●</div>
+                    <p>Intervención en mantenimiento y reparación para recuperar equipos o sistemas que ya no responden.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <div class="container contact">
+            <div class="contact-card reveal">
+                <p class="section-subtitle">Contacto</p>
+                <h2 class="section-title">Hablemos de tu próximo proyecto</h2>
+                <p class="muted">Estamos listos para convertir tus ideas en soluciones tecnológicas reales.</p>
+                <div class="contact-list">
+                    <div class="contact-item">📱 <a href="https://wa.me/573053081374" target="_blank" rel="noopener">WhatsApp: +57 305 3081374</a></div>
+                    <div class="contact-item">✉️ <span>Correo: contacto@invento.com</span></div>
+                    <div class="contact-item">📍 <span>Ubicación: Colombia</span></div>
+                </div>
+            </div>
+            <div class="form-card reveal">
+                <h3>Solicitar Cotización</h3>
+                <form class="contact-form">
+                    <input type="text" name="name" placeholder="Nombre completo" required>
+                    <input type="email" name="email" placeholder="Correo electrónico" required>
+                    <input type="text" name="subject" placeholder="Asunto">
+                    <textarea name="message" placeholder="Describe tu proyecto"></textarea>
+                    <button class="btn-primary" type="submit">Enviar por WhatsApp</button>
+                    <p id="whatsapp-status" class="muted" style="margin-top: 6px;"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-row">
+            <div>
+                <strong>INVENTO</strong>
+                <div class="muted">Diseño, automatización y tecnología a la medida.</div>
+            </div>
+            <div class="socials">
+                <a href="#">Instagram</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">WhatsApp</a>
+            </div>
+            <div class="muted">© 2026 INVENTO. Todos los derechos reservados.</div>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    if (entry.target.classList.contains('stat-number')) {
+                        animateNumber(entry.target);
+                    }
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.reveal, .stat-number').forEach(el => observer.observe(el));
+
+        const form = document.querySelector('.contact-form');
+        const status = document.getElementById('whatsapp-status');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const data = new FormData(form);
+            const name = (data.get('name') || '').trim();
+            const email = (data.get('email') || '').trim();
+            const subject = (data.get('subject') || '').trim();
+            const message = (data.get('message') || '').trim();
+
+            const texto = [
+                `Hola INVENTO, soy ${name || 'un cliente'}\.`,
+                email ? `Correo: ${email}` : '',
+                subject ? `Asunto: ${subject}` : '',
+                message ? `Mensaje: ${message}` : ''
+            ].filter(Boolean).join('\n');
+
+            const url = `https://wa.me/573053081374?text=${encodeURIComponent(texto)}`;
+            window.open(url, '_blank', 'noopener,noreferrer');
+            status.textContent = 'Se abrió WhatsApp con tu solicitud lista para enviar.';
+            form.reset();
+        });
+
+        function animateNumber(el) {
+            const target = Number(el.dataset.target || 0);
+            const duration = 1200;
+            const start = performance.now();
+            const step = (now) => {
+                const progress = Math.min((now - start) / duration, 1);
+                const value = Math.floor(progress * target);
+                el.textContent = `${value}${target >= 100 ? '+' : ''}`;
+                if (progress < 1) requestAnimationFrame(step);
+                else el.textContent = `${target}${target >= 100 ? '+' : ''}`;
+            };
+            requestAnimationFrame(step);
+            el.dataset.animated = 'true';
+        }
+    </script>
+</body>
+</html>
