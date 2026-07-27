@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INVENTO | Ingeniería Electrónica y Automatización</title>
+    <title>Venta de Componentes Electrónicos | Servicio Técnico | Asesoría Técnica</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -52,15 +52,16 @@
 
         header {
             position: fixed; top: 0; left: 0; right: 0;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 18px 7%; background: rgba(7,17,31,0.82); backdrop-filter: blur(14px);
+            display: flex; align-items: center;
+            padding: 18px 7%; background: rgba(7,17,31,0.92); backdrop-filter: blur(14px);
             border-bottom: 1px solid var(--border); z-index: 1000;
         }
         .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; }
         .logo img { width: 44px; height: 44px; border-radius: 12px; object-fit: cover; }
         .logo span { color: var(--cyan); }
         nav ul { display: flex; list-style: none; gap: 24px; }
-        nav a { color: var(--muted); transition: color 0.3s ease; }
+        .header-center { display: flex; gap: 24px; align-items: center; flex: 1; justify-content: center; }
+            nav a { color: var(--muted); transition: color 0.3s ease; }
         nav a:hover { color: var(--cyan); }
         .btn-nav, .btn-primary, .btn-secondary {
             display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; font-weight: 600; transition: all 0.3s ease;
@@ -86,10 +87,37 @@
         .btn-primary:hover { transform: translateY(-2px); background: #ffc84a; }
         .btn-secondary { padding: 14px 24px; color: var(--text); border: 1px solid var(--border); background: rgba(255,255,255,0.03); }
         .btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
-        .hero-card {
-            padding: 26px; border-radius: 24px; background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
-            border: 1px solid var(--border); box-shadow: 0 18px 60px rgba(0,0,0,0.28);
+        .search-bar {
+            display: flex; gap: 8px; align-items: center;
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 999px; padding: 10px 14px;
         }
+        .search-bar input {
+            border: none; outline: none; background: transparent; color: var(--text); width: 220px;
+        }
+        .search-bar button {
+            border: none; border-radius: 999px; padding: 10px 16px; background: var(--cyan); color: #07111f; font-weight: 700; cursor: pointer;
+        }
+        .header-center { display: flex; gap: 24px; align-items: center; flex: 1; justify-content: center; }
+        .product-tag {
+            position: absolute; top: 14px; left: 14px; padding: 7px 10px; border-radius: 999px; background: rgba(255,159,28,0.18); color: var(--orange); font-size: 0.74rem; font-weight: 700;
+        }
+        .product-card { position: relative; display: flex; flex-direction: column; gap: 6px; min-height: 100%; padding: 14px; }
+        .product-card img { border-radius: 12px; height: 140px; object-fit: cover; margin-bottom: 2px; }
+        .product-card h3 { font-size: 0.95rem; line-height: 1.2; margin: 0; }
+        .product-card p { font-size: 0.82rem; color: var(--muted); margin: 0; line-height: 1.45; }
+        .product-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; color: var(--muted); font-size: 0.78rem; margin-top: 2px; }
+        .product-price { color: var(--text); font-size: 0.88rem; font-weight: 800; }
+        .product-card .btn-secondary { width: 100%; padding: 8px 10px; font-size: 0.8rem; margin-top: 4px; }
+        .products-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); align-items: stretch; }
+        .featured-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .service-preview-card { padding: 24px; background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04)); border: 1px solid var(--border); border-radius: 24px; }
+        .service-preview-card h3 { margin-top: 14px; margin-bottom: 10px; }
+        .service-preview-card p { color: var(--muted); }
+        .service-preview-card a { margin-top: 14px; display: inline-flex; color: var(--cyan); font-weight: 700; }
+        .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+        .hero-tags span { padding: 10px 14px; border-radius: 999px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); font-size: 0.9rem; }
+        .btn-primary, .btn-secondary, .btn-nav, .search-bar button { cursor: pointer; }
+        .hero-card { padding: 26px; border-radius: 24px; background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04)); border: 1px solid var(--border); box-shadow: 0 18px 60px rgba(0,0,0,0.28); }
         .hero-card img { border-radius: 20px; height: 360px; object-fit: cover; }
 
         .about { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
@@ -182,277 +210,187 @@
 <body>
     <header>
         <a class="logo" href="#inicio"><img src="LOGOTIPO INVENTO.png" alt="Logo INVENTO"><span>INVENTO</span></a>
-        <nav>
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#quienes-somos">Quiénes Somos</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#proyectos">Proyectos</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-        <a class="btn-nav" href="#contacto">Solicitar Cotización</a>
+        <div class="header-center">
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#ofertas">Ofertas</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <form class="search-bar" onsubmit="return false;">
+                <input type="text" placeholder="Buscar resistencias, sensores, módulos...">
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+        <a class="btn-nav" href="https://wa.me/573053081374" target="_blank" rel="noopener">WhatsApp</a>
     </header>
 
     <section class="hero" id="inicio">
         <div class="container hero-grid">
             <div class="reveal">
-                <div class="eyebrow">Ingeniería Electrónica • Automatización • Sistemas Embebidos • IoT</div>
-                <h1>INVENTO</h1>
-                <p>Desarrollo de soluciones electrónicas, automatización y mantenimiento para proyectos personales, comerciales e industriales.</p>
-                <div class="tags">
-                    <span>Prototipos</span>
-                    <span>Automatización</span>
-                    <span>IoT</span>
-                    <span>Asesoría técnica</span>
+                <div class="eyebrow">Ofertas del día • Envío por WhatsApp • Pago fácil</div>
+                <h1>Tu tienda de componentes electrónicos y servicios</h1>
+                <p>Compra kits, sensores, módulos y repuestos con atención directa por WhatsApp. También ofrecemos servicio técnico y asesoría especializada.</p>
+                <div class="hero-tags">
+                    <span>Ofertas</span>
+                    <span>Kits</span>
+                    <span>Módulos</span>
+                    <span>Repuestos</span>
+                    <span>Asesoría</span>
                 </div>
                 <div class="hero-actions">
-                    <a class="btn-primary" href="#contacto">Solicitar Cotización</a>
-                    <a class="btn-secondary" href="#servicios">Ver Servicios</a>
+                    <a class="btn-primary" href="#ofertas">Ver Ofertas</a>
+                    <a class="btn-secondary" href="#productos">Ir a Productos</a>
                 </div>
             </div>
             <div class="hero-card reveal">
-                <img src="Banner.png" alt="Laboratorio de ingeniería electrónica">
+                <img src="Banner.png" alt="Venta de componentes electrónicos y servicio técnico">
+            </div>
+        </div>
+    </section>
+    <section class="container" style="padding-bottom: 0;">
+        <div class="hero-tags reveal" style="justify-content: space-between; gap: 14px; margin-top: 24px;">
+            <span>Microcontroladores</span>
+            <span>Sensores</span>
+            <span>Placas</span>
+            <span>Herramientas</span>
+            <span>Repuestos</span>
+        </div>
+    </section>
+
+    <section id="ofertas">
+        <div class="container">
+            <p class="section-subtitle reveal">Ofertas destacadas</p>
+            <h2 class="section-title reveal">Promociones del día</h2>
+            <div class="products-grid" style="margin-top: 28px;">
+                <article class="card product-card reveal">
+                    <div class="product-tag">Oferta</div>
+                    <img loading="lazy" src="../Gallery/1785119337175.jpg" alt="Referencia de producto 1">
+                    <h3>Referencia 01</h3>
+                    <p>Producto destacado con imagen de muestra para exhibición rápida.</p>
+                    <div class="product-meta"><span>Disponible</span><span class="product-price">Consultar</span></div>
+                    <a class="btn-secondary" href="https://wa.me/573053081374?text=Hola%20quiero%20consultar%20por%20la%20referencia%2001" target="_blank" rel="noopener">Consultar</a>
+                </article>
+                <article class="card product-card reveal">
+                    <div class="product-tag">Oferta</div>
+                    <img loading="lazy" src="../Gallery/1785119337187.jpg" alt="Referencia de producto 2">
+                    <h3>Referencia 02</h3>
+                    <p>Producto de catálogo listo para mostrar y ampliar con más imágenes.</p>
+                    <div class="product-meta"><span>Disponible</span><span class="product-price">Consultar</span></div>
+                    <a class="btn-secondary" href="https://wa.me/573053081374?text=Hola%20quiero%20consultar%20por%20la%20referencia%2002" target="_blank" rel="noopener">Consultar</a>
+                </article>
+                <article class="card product-card reveal">
+                    <div class="product-tag">Oferta</div>
+                    <img loading="lazy" src="../Gallery/1785119337201.jpg" alt="Referencia de producto 3">
+                    <h3>Referencia 03</h3>
+                    <p>Bloque compacto pensado para crecer con más productos en el futuro.</p>
+                    <div class="product-meta"><span>Disponible</span><span class="product-price">Consultar</span></div>
+                    <a class="btn-secondary" href="https://wa.me/573053081374?text=Hola%20quiero%20consultar%20por%20la%20referencia%2003" target="_blank" rel="noopener">Consultar</a>
+                </article>
             </div>
         </div>
     </section>
 
-    <section id="quienes-somos">
-        <div class="container about">
-            <div class="reveal">
-                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80" alt="Laboratorio electrónico profesional">
-            </div>
-            <div class="reveal">
-                <p class="section-subtitle">Quiénes Somos</p>
-                <h2 class="section-title">Transformamos ideas en soluciones tecnológicas</h2>
-                <p>En INVENTO trabajamos con proyectos de electrónica y automatización de forma práctica, adaptando cada solución al alcance del cliente y a las necesidades reales del equipo o instalación. También apoyamos con diagnóstico, mantenimiento y reparación de equipos electrónicos cuando el problema requiere intervención técnica.</p>
+    <section id="productos">
+        <div class="container">
+            <p class="section-subtitle reveal">Productos</p>
+            <h2 class="section-title reveal">Componentes electrónicos listos para comprar</h2>
+            <div class="products-grid" style="margin-top: 28px;">
+                <article class="card product-card reveal">
+                    <div class="product-tag">Referencia</div>
+                    <img loading="lazy" src="../Gallery/1785119337211.jpg" alt="Producto de referencia 04">
+                    <h3>Referencia 04</h3>
+                    <p>Producto de ejemplo para mostrar el catálogo con formato compacto.</p>
+                    <div class="product-meta"><span>Disponible</span><span class="product-price">Consultar</span></div>
+                    <a class="btn-secondary" href="https://wa.me/573053081374?text=Hola%20quiero%20consultar%20por%20la%20referencia%2004" target="_blank" rel="noopener">Consultar</a>
+                </article>
+                <article class="card product-card reveal">
+                    <div class="product-tag">Referencia</div>
+                    <img loading="lazy" src="../Gallery/1785119337222.jpg" alt="Producto de referencia 05">
+                    <h3>Referencia 05</h3>
+                    <p>Ideal para ir agregando más productos sin saturar la vista.</p>
+                    <div class="product-meta"><span>Disponible</span><span class="product-price">Consultar</span></div>
+                    <a class="btn-secondary" href="https://wa.me/573053081374?text=Hola%20quiero%20consultar%20por%20la%20referencia%2005" target="_blank" rel="noopener">Consultar</a>
+                </article>
+                <article class="card product-card reveal">
+                    <div class="product-tag">Referencia</div>
+                    <img loading="lazy" src="../Gallery/1785119337232.jpg" alt="Producto de referencia 06">
+                    <h3>Referencia 06</h3>
+                    <p>Se adapta bien a un catálogo visual de productos electrónicos.</p>
+                    <div class="product-meta"><span>Disponible</span><span class="product-price">Consultar</span></div>
+                    <a class="btn-secondary" href="https://wa.me/573053081374?text=Hola%20quiero%20consultar%20por%20la%20referencia%2006" target="_blank" rel="noopener">Consultar</a>
+                </article>
+                <article class="card product-card reveal">
+                    <div class="product-tag">Referencia</div>
+                    <img loading="lazy" src="../Gallery/1785119337243.jpg" alt="Producto de referencia 07">
+                    <h3>Referencia 07</h3>
+                    <p>Formato ligero para un listado de productos más amplio.</p>
+                    <div class="product-meta"><span>Disponible</span><span class="product-price">Consultar</span></div>
+                    <a class="btn-secondary" href="https://wa.me/573053081374?text=Hola%20quiero%20consultar%20por%20la%20referencia%2007" target="_blank" rel="noopener">Consultar</a>
+                </article>
+                <article class="card product-card reveal">
+                    <div class="product-tag">Referencia</div>
+                    <img loading="lazy" src="../Gallery/1785119337254.jpg" alt="Producto de referencia 08">
+                    <h3>Referencia 08</h3>
+                    <p>Puede reutilizarse para múltiples categorías de productos.</p>
+                    <div class="product-meta"><span>Disponible</span><span class="product-price">Consultar</span></div>
+                    <a class="btn-secondary" href="https://wa.me/573053081374?text=Hola%20quiero%20consultar%20por%20la%20referencia%2008" target="_blank" rel="noopener">Consultar</a>
+                </article>
+                <article class="card product-card reveal">
+                    <div class="product-tag">Referencia</div>
+                    <img loading="lazy" src="../Gallery/1785119337267.jpg" alt="Producto de referencia 09">
+                    <h3>Referencia 09</h3>
+                    <p>Diseño pensado para que la galería se vea limpia y ordenada.</p>
+                    <div class="product-meta"><span>Disponible</span><span class="product-price">Consultar</span></div>
+                    <a class="btn-secondary" href="https://wa.me/573053081374?text=Hola%20quiero%20consultar%20por%20la%20referencia%2009" target="_blank" rel="noopener">Consultar</a>
+                </article>
+                <article class="card product-card reveal">
+                    <div class="product-tag">Referencia</div>
+                    <img loading="lazy" src="../Gallery/1785119337280.jpg" alt="Producto de referencia 10">
+                    <h3>Referencia 10</h3>
+                    <p>Espacio listo para incorporar nuevas fotos sin reestructurar el layout.</p>
+                    <div class="product-meta"><span>Disponible</span><span class="product-price">Consultar</span></div>
+                    <a class="btn-secondary" href="https://wa.me/573053081374?text=Hola%20quiero%20consultar%20por%20la%20referencia%2010" target="_blank" rel="noopener">Consultar</a>
+                </article>
             </div>
         </div>
     </section>
 
     <section id="servicios">
         <div class="container">
-            <p class="section-subtitle reveal">Servicios</p>
-            <h2 class="section-title reveal">Soluciones a medida para cada necesidad</h2>
+            <p class="section-subtitle reveal">Nuestros servicios</p>
+            <h2 class="section-title reveal">Soporte técnico y asesoría especializada</h2>
             <div class="services-grid" style="margin-top: 28px;">
-                <article class="card reveal">
-                    <div class="icon">⚡</div>
-                    <h3>Desarrollo Electrónico</h3>
-                    <p>Diseñamos dispositivos electrónicos personalizados, prototipos, sistemas embebidos y soluciones adaptadas a cada proyecto.</p>
-                    <img class="service-image" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80" alt="PCB y desarrollo electrónico">
-                </article>
-                <article class="card reveal">
-                    <div class="icon">🏠</div>
-                    <h3>Automatización e IoT</h3>
-                    <p>Automatizamos hogares, oficinas e industrias mediante sensores, actuadores y monitoreo remoto.</p>
-                    <img class="service-image" src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=900&q=80" alt="Casa inteligente y automatización">
-                </article>
-                <article class="card reveal">
-                    <div class="icon">🛠️</div>
+                <article class="service-preview-card reveal">
                     <h3>Servicio Técnico Electrónico</h3>
-                    <p>Diagnóstico, mantenimiento y reparación profesional de tarjetas electrónicas y equipos especializados.</p>
-                    <img class="service-image" src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=900&q=80" alt="Estación de soldadura">
+                    <p>Diagnóstico, reparación y mantenimiento de tarjetas electrónicas y dispositivos con criterio profesional.</p>
+                    <a href="servicios.html">Ver más</a>
                 </article>
-                <article class="card reveal">
-                    <div class="icon">🔧</div>
+                <article class="service-preview-card reveal">
+                    <h3>Asesoría Técnica</h3>
+                    <p>Apoyo para elegir componentes, resolver fallas y planificar soluciones seguras para tu proyecto.</p>
+                    <a href="servicios.html">Ver más</a>
+                </article>
+                <article class="service-preview-card reveal">
                     <h3>Venta de Componentes</h3>
-                    <p>Comercializamos componentes electrónicos originales y brindamos asesoría para proyectos académicos e industriales.</p>
-                    <img class="service-image" src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=900&q=80" alt="Componentes electrónicos">
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <p class="section-subtitle reveal">Venta de componentes y soporte técnico</p>
-            <h2 class="section-title reveal">Apoyo para montaje, mantenimiento y puesta en marcha</h2>
-            <div class="services-grid" style="margin-top: 28px;">
-                <article class="card reveal">
-                    <div class="icon">📦</div>
-                    <h3>Venta de componentes</h3>
-                    <p>Asesoría y suministro de componentes electrónicos básicos y especializados para proyectos de laboratorio, academia, automatización y prototipos.</p>
-                    <ul class="muted" style="margin-top: 12px; padding-left: 18px;">
-                        <li>Microcontroladores y módulos</li>
-                        <li>Sensores y actuadores</li>
-                        <li>Conectores, cables y accesorios</li>
-                        <li>Material para prueba y montaje</li>
-                    </ul>
-                </article>
-                <article class="card reveal">
-                    <div class="icon">🧰</div>
-                    <h3>Servicios técnicos electrónicos</h3>
-                    <p>Diagnóstico, reparación y mantenimiento de placas, equipos y sistemas electrónicos con enfoque técnico y seguro.</p>
-                    <ul class="muted" style="margin-top: 12px; padding-left: 18px;">
-                        <li>Revisión de fallas y medición</li>
-                        <li>Reparación de tarjetas y módulos</li>
-                        <li>Soldadura y remoción de componentes</li>
-                        <li>Pruebas funcionales y entrega</li>
-                    </ul>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <p class="section-subtitle reveal">Cómo trabajamos</p>
-            <h2 class="section-title reveal">Un proceso claro desde la idea hasta la entrega</h2>
-            <div class="process" style="margin-top: 24px;">
-                <div class="process-steps">
-                    <div class="process-step reveal">
-                        <div class="step-box"><h4>Cliente</h4><p>Entendemos la necesidad y el contexto del proyecto.</p></div>
-                        <div class="step-dot"></div>
-                        <div></div>
-                    </div>
-                    <div class="process-step reveal">
-                        <div></div>
-                        <div class="step-dot"></div>
-                        <div class="step-box"><h4>Análisis del problema</h4><p>Definimos alcance, requisitos y restricciones técnicas.</p></div>
-                    </div>
-                    <div class="process-step reveal">
-                        <div class="step-box"><h4>Diseño de la solución</h4><p>Planificamos arquitectura, electrónica y lógica de control.</p></div>
-                        <div class="step-dot"></div>
-                        <div></div>
-                    </div>
-                    <div class="process-step reveal">
-                        <div></div>
-                        <div class="step-dot"></div>
-                        <div class="step-box"><h4>Desarrollo</h4><p>Construimos prototipos y soluciones funcionales.</p></div>
-                    </div>
-                    <div class="process-step reveal">
-                        <div class="step-box"><h4>Pruebas</h4><p>Validamos rendimiento, estabilidad y seguridad del sistema.</p></div>
-                        <div class="step-dot"></div>
-                        <div></div>
-                    </div>
-                    <div class="process-step reveal">
-                        <div></div>
-                        <div class="step-dot"></div>
-                        <div class="step-box"><h4>Entrega</h4><p>Entregamos una solución lista para operar y escalar.</p></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="proyectos">
-        <div class="container">
-            <p class="section-subtitle reveal">Proyectos</p>
-            <h2 class="section-title reveal">Proyectos que combinan tecnología, funcionalidad y resultados</h2>
-            <div class="projects-grid" style="margin-top: 28px;">
-                <article class="card project-card reveal">
-                    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=900&q=80" alt="Sistema inteligente para hogar">
-                    <div class="project-body">
-                        <h3>Sistema Inteligente para Hogar</h3>
-                        <p>Control remoto de iluminación, seguridad y climatización con ESP32 y MQTT.</p>
-                        <div class="tech-list"><span>ESP32</span><span>MQTT</span><span>WiFi</span><span>Sensores</span><span>App móvil</span></div>
-                        <div class="project-meta"><span>Estado</span><span class="status">Finalizado</span></div>
-                    </div>
-                </article>
-                <article class="card project-card reveal">
-                    <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80" alt="Automatización de negocio">
-                    <div class="project-body">
-                        <h3>Automatización de Negocio</h3>
-                        <p>Mejora de procesos operativos con monitoreo en tiempo real y control automatizado.</p>
-                        <div class="tech-list"><span>PLC</span><span>IoT</span><span>Node-RED</span><span>Cloud</span></div>
-                        <div class="project-meta"><span>Tiempo</span><span>6 semanas</span></div>
-                    </div>
-                </article>
-                <article class="card project-card reveal">
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="Sistema embebido personalizado">
-                    <div class="project-body">
-                        <h3>Sistema Embebido Personalizado</h3>
-                        <p>Diseño y desarrollo de un sistema a medida con integración de sensores, comunicación y control.</p>
-                        <div class="tech-list"><span>STM32</span><span>Python</span><span>FastAPI</span><span>Linux</span></div>
-                        <div class="project-meta"><span>Resultado</span><span>Alta confiabilidad</span></div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section class="stats">
-        <div class="container stats-grid">
-            <div class="stat-card reveal">
-                <h3>Proyectos en curso</h3>
-                <p>Soluciones en desarrollo para automatización, monitoreo y control.</p>
-            </div>
-            <div class="stat-card reveal">
-                <h3>Soporte técnico</h3>
-                <p>Diagnóstico y reparación de equipos electrónicos con criterio técnico.</p>
-            </div>
-            <div class="stat-card reveal">
-                <h3>Asesoría en componentes</h3>
-                <p>Orientación para elegir piezas y módulos según el proyecto.</p>
-            </div>
-            <div class="stat-card reveal">
-                <h3>Enfoque práctico</h3>
-                <p>Trabajo cercano, claro y orientado a resultados reales.</p>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <p class="section-subtitle reveal">Tecnologías</p>
-            <h2 class="section-title reveal">Herramientas con las que construimos soluciones reales</h2>
-            <div class="tech-grid" style="margin-top: 24px;">
-                <div class="tech-pill reveal">Arduino</div>
-                <div class="tech-pill reveal">ESP32</div>
-                <div class="tech-pill reveal">STM32</div>
-                <div class="tech-pill reveal">Raspberry Pi</div>
-                <div class="tech-pill reveal">Python</div>
-                <div class="tech-pill reveal">Flutter</div>
-                <div class="tech-pill reveal">FastAPI</div>
-                <div class="tech-pill reveal">MQTT</div>
-                <div class="tech-pill reveal">Node-RED</div>
-                <div class="tech-pill reveal">Linux</div>
-                <div class="tech-pill reveal">C/C++</div>
-                <div class="tech-pill reveal">KiCad</div>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <p class="section-subtitle reveal">Por qué elegir INVENTO</p>
-            <h2 class="section-title reveal">Calidad, personalización y acompañamiento técnico</h2>
-            <div class="why-grid" style="margin-top: 24px;">
-                <div class="benefit reveal"><h3>Ingeniería profesional</h3><p>Enfoque técnico sólido para resolver problemas reales de forma eficiente.</p></div>
-                <div class="benefit reveal"><h3>Diseños personalizados</h3><p>Adaptamos cada solución a las necesidades del cliente y del entorno.</p></div>
-                <div class="benefit reveal"><h3>Soporte técnico</h3><p>Acompañamiento continuo antes, durante y después de la implementación.</p></div>
-                <div class="benefit reveal"><h3>Calidad garantizada</h3><p>Priorizamos confiabilidad, mantenimiento y resultados duraderos.</p></div>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <p class="section-subtitle reveal">Atención técnica</p>
-            <h2 class="section-title reveal">Apoyo cercano para proyectos y equipos</h2>
-            <div class="testimonials-grid" style="margin-top: 24px;">
-                <article class="testimonial reveal">
-                    <div class="stars">●●●●●</div>
-                    <p>Revisión inicial del problema, orientación sobre la mejor alternativa técnica y propuesta de solución.</p>
-                </article>
-                <article class="testimonial reveal">
-                    <div class="stars">●●●●●</div>
-                    <p>Asesoría para compra de componentes y selección de módulos según el alcance del proyecto.</p>
-                </article>
-                <article class="testimonial reveal">
-                    <div class="stars">●●●●●</div>
-                    <p>Intervención en mantenimiento y reparación para recuperar equipos o sistemas que ya no responden.</p>
+                    <p>Componentes electrónicos, módulos y kits disponibles con pedidos rápidos y atención por WhatsApp.</p>
+                    <a href="#productos">Ver productos</a>
                 </article>
             </div>
         </div>
     </section>
 
     <section id="contacto">
+
+    <section id="contacto">
         <div class="container contact">
             <div class="contact-card reveal">
                 <p class="section-subtitle">Contacto</p>
-                <h2 class="section-title">Hablemos de tu próximo proyecto</h2>
-                <p class="muted">Estamos listos para convertir tus ideas en soluciones tecnológicas reales.</p>
+                <h2 class="section-title">Contáctanos por WhatsApp</h2>
+                <p class="muted">Para venta de componentes, servicio técnico o asesoría técnica, escríbenos y te respondemos rápido.</p>
                 <div class="contact-list">
                     <div class="contact-item">📱 <a href="https://wa.me/573053081374" target="_blank" rel="noopener">WhatsApp: +57 305 3081374</a></div>
                     <div class="contact-item">✉️ <span>Correo: contacto@invento.com</span></div>
@@ -460,12 +398,12 @@
                 </div>
             </div>
             <div class="form-card reveal">
-                <h3>Solicitar Cotización</h3>
+                <h3>Escribe tu solicitud</h3>
                 <form class="contact-form">
                     <input type="text" name="name" placeholder="Nombre completo" required>
                     <input type="email" name="email" placeholder="Correo electrónico" required>
-                    <input type="text" name="subject" placeholder="Asunto">
-                    <textarea name="message" placeholder="Describe tu proyecto"></textarea>
+                    <input type="text" name="subject" placeholder="Servicio requerido">
+                    <textarea name="message" placeholder="Describe tu equipo o proyecto"></textarea>
                     <button class="btn-primary" type="submit">Enviar por WhatsApp</button>
                     <p id="whatsapp-status" class="muted" style="margin-top: 6px;"></p>
                 </form>
@@ -477,12 +415,12 @@
         <div class="container footer-row">
             <div>
                 <strong>INVENTO</strong>
-                <div class="muted">Diseño, automatización y tecnología a la medida.</div>
+                <div class="muted">Venta de componentes, servicio técnico y asesoría electrónica.</div>
             </div>
             <div class="socials">
+                <a href="https://wa.me/573053081374" target="_blank" rel="noopener">WhatsApp</a>
                 <a href="#">Instagram</a>
                 <a href="#">LinkedIn</a>
-                <a href="#">WhatsApp</a>
             </div>
             <div class="muted">© 2026 INVENTO. Todos los derechos reservados.</div>
         </div>
