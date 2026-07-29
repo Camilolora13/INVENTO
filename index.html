@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Venta de Componentes Electrónicos | Servicio Técnico | Asesoría Técnica</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="description" content="Venta de componentes electrónicos y servicios técnicos de reparación, mantenimiento y mejora.">
+    <title>INVENTO | Componentes y servicios técnicos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #06121f;
-            --bg-soft: #0e1b2f;
+            --bg: #07111f;
+            --bg-soft: #0d1728;
             --panel: rgba(255,255,255,0.06);
             --panel-strong: rgba(255,255,255,0.1);
             --text: #f7fbff;
-            --muted: #b5c2d6;
+            --muted: #b8c7da;
             --cyan: #2dd4ff;
-            --cyan-strong: #13a8cf;
             --orange: #ff9f1c;
             --green: #34d399;
-            --border: rgba(255,255,255,0.13);
+            --border: rgba(255,255,255,0.14);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,416 +29,295 @@
             line-height: 1.7;
             overflow-x: hidden;
         }
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
-            pointer-events: none;
-            z-index: -1;
-        }
-        h1, h2, h3, .logo { font-family: 'Poppins', sans-serif; }
-        img { max-width: 100%; display: block; }
+        img { display: block; max-width: 100%; }
         a { color: inherit; text-decoration: none; }
-        section { padding: 100px 7%; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .section-title { font-size: 2rem; margin-bottom: 12px; color: #ffffff; }
-        .section-subtitle { color: var(--cyan); text-transform: uppercase; letter-spacing: 0.25em; font-size: 0.8rem; margin-bottom: 8px; font-weight: 700; }
-        .muted { color: var(--muted); }
-        .reveal { opacity: 0; transform: translateY(24px); transition: all 0.8s ease; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
+        section { padding: 90px 6%; }
+        .container { max-width: 1180px; margin: 0 auto; }
+        .section-subtitle { color: var(--cyan); text-transform: uppercase; letter-spacing: 0.28em; font-size: 0.78rem; font-weight: 700; margin-bottom: 10px; }
+        .section-title { font-family: 'Poppins', sans-serif; font-size: clamp(1.6rem, 2.8vw, 2.2rem); margin-bottom: 10px; }
+        .section-copy { color: var(--muted); max-width: 680px; }
+        .btn-primary, .btn-secondary, .btn-nav {
+            display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; font-weight: 700; transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+        }
+        .btn-primary { background: var(--orange); color: #07111f; padding: 13px 22px; }
+        .btn-primary:hover { transform: translateY(-2px); }
+        .btn-secondary { padding: 13px 22px; border: 1px solid var(--border); color: var(--text); background: rgba(255,255,255,0.03); }
+        .btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
+        .btn-nav { padding: 10px 16px; background: var(--orange); color: #07111f; }
 
         header {
-            position: fixed; top: 0; left: 0; right: 0;
-            display: flex; align-items: center;
-            padding: 18px 7%; background: rgba(7,17,31,0.92); backdrop-filter: blur(14px);
-            border-bottom: 1px solid var(--border); z-index: 1000;
+            position: sticky; top: 0; z-index: 1000;
+            display: flex; align-items: center; justify-content: space-between; gap: 16px;
+            padding: 16px 6%; background: rgba(7,17,31,0.94); border-bottom: 1px solid var(--border); backdrop-filter: blur(10px);
         }
-        .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; }
-        .logo img { width: 44px; height: 44px; border-radius: 12px; object-fit: cover; }
+        .logo { display: flex; align-items: center; gap: 10px; font-family: 'Poppins', sans-serif; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+        .logo img { width: 42px; height: 42px; border-radius: 12px; object-fit: cover; }
         .logo span { color: var(--cyan); }
-        nav ul { display: flex; list-style: none; gap: 24px; }
-        .header-center { display: flex; gap: 24px; align-items: center; flex: 1; justify-content: center; }
-            nav a { color: var(--muted); transition: color 0.3s ease; }
+        nav ul { display: flex; flex-wrap: wrap; gap: 18px; list-style: none; }
+        nav a { color: var(--muted); }
         nav a:hover { color: var(--cyan); }
-        .btn-nav, .btn-primary, .btn-secondary {
-            display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; font-weight: 600; transition: all 0.3s ease;
-        }
-        .btn-nav {
-            padding: 10px 18px; background: var(--orange); color: #07111f;
-        }
-        .btn-nav:hover { transform: translateY(-2px); background: #ffca4b; }
 
         .hero {
-            min-height: 100vh; display: grid; align-items: center; padding-top: 140px;
-            background: linear-gradient(90deg, rgba(7,17,31,0.98) 0%, rgba(7,17,31,0.86) 55%, rgba(7,17,31,0.5) 100%),
-                        url('Banner.png') center/cover no-repeat;
+            padding-top: 40px;
+            background: linear-gradient(90deg, rgba(7,17,31,0.96), rgba(7,17,31,0.78));
         }
-        .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; }
-        .hero h1 { font-size: clamp(2.5rem, 4.6vw, 4.7rem); line-height: 1.08; margin-bottom: 20px; }
-        .hero .eyebrow { color: var(--cyan); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.3em; margin-bottom: 16px; }
-        .hero p { font-size: 1.05rem; color: var(--muted); max-width: 640px; margin-bottom: 28px; }
-        .hero .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 34px; }
-        .hero .tags span { padding: 8px 12px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); font-size: 0.92rem; }
-        .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; }
-        .btn-primary { padding: 14px 24px; background: var(--orange); color: #07111f; }
-        .btn-primary:hover { transform: translateY(-2px); background: #ffc84a; }
-        .btn-secondary { padding: 14px 24px; color: var(--text); border: 1px solid var(--border); background: rgba(255,255,255,0.03); }
-        .btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
-        .search-bar {
-            display: flex; gap: 8px; align-items: center;
-            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 999px; padding: 10px 14px;
+        .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items: center; }
+        .eyebrow { color: var(--cyan); text-transform: uppercase; letter-spacing: 0.3em; font-size: 0.8rem; font-weight: 700; margin-bottom: 12px; }
+        .hero h1 { font-family: 'Poppins', sans-serif; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; margin-bottom: 14px; }
+        .hero p { color: var(--muted); font-size: 1rem; max-width: 640px; }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 22px 0 16px; }
+        .hero-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+        .hero-pills span { display: inline-block; padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
+        .hero-card { padding: 18px; border-radius: 24px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); }
+        .hero-card img { height: 320px; width: 100%; border-radius: 18px; object-fit: cover; }
+
+        .intro-strip {
+            display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 20px; align-items: center;
+            padding: 24px; border: 1px solid var(--border); border-radius: 24px; background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
         }
-        .search-bar input {
-            border: none; outline: none; background: transparent; color: var(--text); width: 220px;
-        }
-        .search-bar button {
-            border: none; border-radius: 999px; padding: 10px 16px; background: var(--cyan); color: #07111f; font-weight: 700; cursor: pointer;
-        }
-        .header-center { display: flex; gap: 24px; align-items: center; flex: 1; justify-content: center; }
-        .product-tag {
-            position: absolute; top: 14px; left: 14px; padding: 7px 10px; border-radius: 999px; background: rgba(255,159,28,0.18); color: var(--orange); font-size: 0.74rem; font-weight: 700;
-        }
-        .product-card { position: relative; display: flex; flex-direction: column; gap: 6px; min-height: 100%; padding: 14px; }
-        .product-card img { border-radius: 12px; height: 140px; object-fit: cover; margin-bottom: 2px; }
-        .product-card h3 { font-size: 0.95rem; line-height: 1.2; margin: 0; }
-        .product-card p { font-size: 0.82rem; color: var(--muted); margin: 0; line-height: 1.45; }
-        .product-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; color: var(--muted); font-size: 0.78rem; margin-top: 2px; }
-        .product-price { color: var(--text); font-size: 0.88rem; font-weight: 800; }
-        .product-card .btn-secondary { width: 100%; padding: 8px 10px; font-size: 0.8rem; margin-top: 4px; }
-        .products-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); align-items: stretch; }
-        .featured-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-        .service-preview-card { padding: 24px; background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04)); border: 1px solid var(--border); border-radius: 24px; }
-        .service-preview-card h3 { margin-top: 14px; margin-bottom: 10px; }
-        .service-preview-card p { color: var(--muted); }
-        .service-preview-card a { margin-top: 14px; display: inline-flex; color: var(--cyan); font-weight: 700; }
-        .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
-        .hero-tags span { padding: 10px 14px; border-radius: 999px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); font-size: 0.9rem; }
-        .btn-primary, .btn-secondary, .btn-nav, .search-bar button { cursor: pointer; }
-        .hero-card { padding: 26px; border-radius: 24px; background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04)); border: 1px solid var(--border); box-shadow: 0 18px 60px rgba(0,0,0,0.28); }
-        .hero-card img { border-radius: 20px; height: 360px; object-fit: cover; }
+        .summary-cards { display: grid; gap: 12px; }
+        .summary-card { padding: 14px 16px; border-radius: 16px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); }
+        .summary-card strong { display: block; margin-bottom: 4px; }
+        .summary-card span { color: var(--muted); font-size: 0.95rem; }
 
-        .about { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .about img { border-radius: 24px; height: 420px; object-fit: cover; box-shadow: 0 18px 40px rgba(0,0,0,0.28); }
-        .about p { margin-top: 16px; color: var(--muted); }
+        .section-head { display: flex; justify-content: space-between; gap: 16px; align-items: end; margin-bottom: 22px; flex-wrap: wrap; }
+        .product-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .product-card { padding: 16px; border-radius: 20px; background: var(--panel); border: 1px solid var(--border); display: flex; flex-direction: column; gap: 10px; min-height: 100%; }
+        .product-card img { height: 180px; width: 100%; object-fit: cover; border-radius: 14px; display: block; }
+        .product-card h3 { font-size: 1rem; min-height: 2.4rem; }
+        .product-card p { color: var(--muted); font-size: 0.95rem; flex: 1; }
+        .product-card .price { color: var(--cyan); font-weight: 700; margin-top: auto; }
+        .empty-state { grid-column: 1 / -1; padding: 22px; border: 1px dashed var(--border); border-radius: 20px; text-align: center; color: var(--muted); }
 
-        .services-grid, .projects-grid, .testimonials-grid, .why-grid { display: grid; gap: 24px; }
-        .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-        .card {
-            padding: 28px; border-radius: 24px; background: var(--panel); border: 1px solid var(--border);
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card:hover { transform: translateY(-6px); border-color: var(--cyan); box-shadow: 0 16px 40px rgba(0,0,0,0.18); }
-        .icon {
-            width: 48px; height: 48px; display: grid; place-items: center; border-radius: 14px;
-            background: linear-gradient(135deg, rgba(36,226,255,0.2), rgba(36,226,255,0.06)); color: var(--cyan); margin-bottom: 16px;
-        }
-        .card h3 { margin-bottom: 8px; }
-        .card p { color: var(--muted); }
-        .service-image { margin-top: 18px; border-radius: 18px; height: 200px; object-fit: cover; }
+        .service-preview-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .service-card { padding: 22px; border-radius: 20px; background: var(--panel); border: 1px solid var(--border); }
+        .service-card h3 { margin-bottom: 10px; }
+        .service-card p, .service-card li { color: var(--muted); }
+        .service-card ul { padding-left: 18px; margin-top: 10px; }
+        .service-card li { margin-bottom: 8px; }
 
-        .process { position: relative; padding-top: 30px; }
-        .process::before { content: ''; position: absolute; left: 50%; top: 28px; bottom: 28px; width: 2px; background: linear-gradient(to bottom, var(--cyan), transparent); transform: translateX(-50%); }
-        .process-steps { display: grid; gap: 18px; }
-        .process-step { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; }
-        .step-box { padding: 18px 22px; background: var(--panel); border: 1px solid var(--border); border-radius: 16px; }
-        .step-box h4 { margin-bottom: 6px; }
-        .step-dot { width: 16px; height: 16px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 0 8px rgba(36,226,255,0.16); }
-        .process-step:nth-child(odd) .step-box { text-align: right; }
-
-        .projects-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-        .project-card { padding: 0; overflow: hidden; }
-        .project-card img { height: 220px; object-fit: cover; }
-        .project-body { padding: 22px; }
-        .project-body .tech-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 14px; }
-        .project-body .tech-list span { padding: 6px 10px; border-radius: 999px; background: rgba(36,226,255,0.12); color: var(--cyan); font-size: 0.8rem; }
-        .project-meta { display: flex; justify-content: space-between; color: var(--muted); font-size: 0.9rem; margin-top: 12px; }
-        .status { color: var(--green); font-weight: 600; }
-
-        .stats { background: linear-gradient(135deg, rgba(7,17,31,0.95), rgba(11,31,56,0.95)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-        .stats-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
-        .stat-card { padding: 24px; text-align: center; border-radius: 18px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); }
-        .stat-number { font-size: 2rem; font-weight: 800; color: var(--cyan); margin-bottom: 6px; }
-
-        .tech-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
-        .tech-pill { padding: 16px; text-align: center; border-radius: 18px; background: var(--panel); border: 1px solid var(--border); color: var(--muted); }
-
-        .why-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-        .benefit { padding: 24px; border-radius: 20px; background: var(--panel); border: 1px solid var(--border); }
-        .benefit h3 { margin-bottom: 10px; }
-
-        .testimonials-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-        .testimonial { padding: 24px; border-radius: 20px; background: var(--panel); border: 1px solid var(--border); }
-        .person { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
-        .person img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
-        .stars { color: var(--orange); margin-bottom: 12px; letter-spacing: 0.2em; }
-
-        .contact { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 30px; align-items: start; }
-        .contact-card, .form-card { padding: 28px; border-radius: 24px; background: var(--panel); border: 1px solid var(--border); }
-        .contact-list { display: grid; gap: 12px; margin-top: 16px; }
-        .contact-item { display: flex; align-items: center; gap: 10px; color: var(--muted); }
-        .contact-form { display: grid; gap: 14px; margin-top: 16px; }
-        .contact-form input, .contact-form textarea { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); background: rgba(255,255,255,0.04); color: var(--text); }
-        .contact-form textarea { min-height: 120px; resize: vertical; }
+        .contact-grid { display: grid; gap: 20px; grid-template-columns: 0.95fr 1.05fr; align-items: start; }
+        .contact-card, .form-card { padding: 22px; border-radius: 22px; background: var(--panel); border: 1px solid var(--border); }
+        .contact-list { display: grid; gap: 10px; margin-top: 12px; }
+        .contact-list a, .contact-list span { color: var(--muted); }
+        .contact-form { display: grid; gap: 12px; margin-top: 14px; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 11px 12px; border-radius: 12px; border: 1px solid var(--border); background: rgba(255,255,255,0.04); color: var(--text); }
+        .contact-form textarea { min-height: 110px; resize: vertical; }
         .contact-form button { border: 0; cursor: pointer; }
 
-        footer { padding: 40px 7% 60px; border-top: 1px solid var(--border); color: var(--muted); }
-        .footer-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
-        .socials { display: flex; gap: 12px; color: var(--cyan); }
+        footer { padding: 28px 6% 40px; border-top: 1px solid var(--border); color: var(--muted); }
+        .footer-row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; }
+        .socials { display: flex; gap: 12px; flex-wrap: wrap; }
 
-        @media (max-width: 1024px) {
-            .hero-grid, .about, .contact { grid-template-columns: 1fr; }
-            .projects-grid { grid-template-columns: 1fr 1fr; }
-            .services-grid { grid-template-columns: 1fr; }
-            .stats-grid, .tech-grid, .testimonials-grid { grid-template-columns: 1fr 1fr; }
+        @media (max-width: 900px) {
+            .hero-grid, .intro-strip, .contact-grid { grid-template-columns: 1fr; }
+            .product-grid, .service-preview-grid { grid-template-columns: 1fr 1fr; }
         }
-        @media (max-width: 768px) {
-            header { flex-direction: column; gap: 12px; }
-            nav ul { flex-wrap: wrap; justify-content: center; }
-            section { padding: 80px 5%; }
-            .process::before { display: none; }
-            .process-step { grid-template-columns: 1fr; }
-            .process-step:nth-child(odd) .step-box { text-align: left; }
-            .projects-grid, .stats-grid, .tech-grid, .testimonials-grid, .why-grid { grid-template-columns: 1fr; }
-            .hero { padding-top: 180px; }
-            .hero-actions { flex-direction: column; }
+
+        @media (max-width: 640px) {
+            header { flex-direction: column; align-items: flex-start; }
+            section { padding: 76px 5%; }
+            .hero { padding-top: 20px; }
+            .hero-actions { flex-direction: column; align-items: stretch; }
+            .product-grid, .service-preview-grid { grid-template-columns: 1fr; }
+            .hero-card img { height: 240px; }
+            .product-card img { height: 160px; }
         }
     </style>
 </head>
 <body>
     <header>
         <a class="logo" href="#inicio"><img src="LOGOTIPO INVENTO.png" alt="Logo INVENTO"><span>INVENTO</span></a>
-        <div class="header-center">
-            <nav>
-                <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#productos">Productos</a></li>
-                    <li><a href="#ofertas">Ofertas</a></li>
-                    <li><a href="servicios.html">Servicios</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
-            </nav>
-            <form class="search-bar" onsubmit="return false;">
-                <input type="text" placeholder="Buscar resistencias, sensores, módulos...">
-                <button type="submit">Buscar</button>
-            </form>
-        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
         <a class="btn-nav" href="https://wa.me/573053081374" target="_blank" rel="noopener">WhatsApp</a>
     </header>
 
-    <section class="hero" id="inicio">
-        <div class="container hero-grid">
-            <div class="reveal">
-                <div class="eyebrow">Ofertas del día • Envío por WhatsApp • Pago fácil</div>
-                <h1>Tu tienda de componentes electrónicos y servicios</h1>
-                <p>Compra kits, sensores, módulos y repuestos con atención directa por WhatsApp. También ofrecemos servicio técnico y asesoría especializada.</p>
-                <div class="hero-tags">
-                    <span>Ofertas</span>
-                    <span>Kits</span>
-                    <span>Módulos</span>
-                    <span>Repuestos</span>
-                    <span>Asesoría</span>
+    <main>
+        <section class="hero" id="inicio">
+            <div class="container hero-grid">
+                <div>
+                    <p class="eyebrow">Venta de componentes y soporte técnico</p>
+                    <h1>Componentes electrónicos y servicio técnico para reparación, mantenimiento y mejora.</h1>
+                    <p>Ofrecemos componentes, repuestos y asistencia técnica con atención directa por WhatsApp para que consultes disponibilidad y resuelvas tus necesidades.</p>
+                    <div class="hero-actions">
+                        <a class="btn-primary" href="#productos">Ver catálogo</a>
+                        <a class="btn-secondary" href="servicios.html">Ver servicios</a>
+                    </div>
+                    <div class="hero-pills">
+                        <span>Repuestos</span>
+                        <span>Diagnóstico</span>
+                        <span>Mantenimiento</span>
+                        <span>Asesoría</span>
+                    </div>
                 </div>
-                <div class="hero-actions">
-                    <a class="btn-primary" href="#ofertas">Ver Ofertas</a>
-                    <a class="btn-secondary" href="#productos">Ir a Productos</a>
-                </div>
-            </div>
-            <div class="hero-card reveal">
-                <img src="Banner.png" alt="Venta de componentes electrónicos y servicio técnico">
-            </div>
-        </div>
-    </section>
-    <section class="container" style="padding-bottom: 0;">
-        <div class="hero-tags reveal" style="justify-content: space-between; gap: 14px; margin-top: 24px;">
-            <span>Microcontroladores</span>
-            <span>Sensores</span>
-            <span>Placas</span>
-            <span>Herramientas</span>
-            <span>Repuestos</span>
-        </div>
-    </section>
-
-    <section id="ofertas">
-        <div class="container">
-            <p class="section-subtitle reveal">Ofertas destacadas</p>
-            <h2 class="section-title reveal">Promociones del día</h2>
-            <div class="products-grid" style="margin-top: 28px;">
-                <article class="card product-card reveal">
-                    <div class="product-tag">Oferta</div>
-                    <img loading="lazy" src="../Gallery/1785119337175.jpg" alt="Referencia de producto 1">
-                    <h3>Referencia 01</h3>
-                    <p>Producto destacado con imagen de muestra para exhibición rápida.</p>
-                    <div class="product-meta"><span>Disponible</span><span class="product-price">Consultar</span></div>
-                    <a class="btn-secondary" href="https://wa.me/573053081374?text=Hola%20quiero%20consultar%20por%20la%20referencia%2001" target="_blank" rel="noopener">Consultar</a>
-                </article>
-                <article class="card product-card reveal">
-                    <div class="product-tag">Oferta</div>
-                    <img loading="lazy" src="../Gallery/1785119337187.jpg" alt="Referencia de producto 2">
-                    <h3>Referencia 02</h3>
-                    <p>Producto de catálogo listo para mostrar y ampliar con más imágenes.</p>
-                    <div class="product-meta"><span>Disponible</span><span class="product-price">Consultar</span></div>
-                    <a class="btn-secondary" href="https://wa.me/573053081374?text=Hola%20quiero%20consultar%20por%20la%20referencia%2002" target="_blank" rel="noopener">Consultar</a>
-                </article>
-                <article class="card product-card reveal">
-                    <div class="product-tag">Oferta</div>
-                    <img loading="lazy" src="../Gallery/1785119337201.jpg" alt="Referencia de producto 3">
-                    <h3>Referencia 03</h3>
-                    <p>Bloque compacto pensado para crecer con más productos en el futuro.</p>
-                    <div class="product-meta"><span>Disponible</span><span class="product-price">Consultar</span></div>
-                    <a class="btn-secondary" href="https://wa.me/573053081374?text=Hola%20quiero%20consultar%20por%20la%20referencia%2003" target="_blank" rel="noopener">Consultar</a>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section id="productos">
-        <div class="container">
-            <p class="section-subtitle reveal">Productos</p>
-            <h2 class="section-title reveal">Componentes electrónicos listos para comprar</h2>
-            <div class="products-grid" style="margin-top: 28px;">
-                <article class="card product-card reveal">
-                    <div class="product-tag">Referencia</div>
-                    <img loading="lazy" src="../Gallery/1785119337211.jpg" alt="Producto de referencia 04">
-                    <h3>Referencia 04</h3>
-                    <p>Producto de ejemplo para mostrar el catálogo con formato compacto.</p>
-                    <div class="product-meta"><span>Disponible</span><span class="product-price">Consultar</span></div>
-                    <a class="btn-secondary" href="https://wa.me/573053081374?text=Hola%20quiero%20consultar%20por%20la%20referencia%2004" target="_blank" rel="noopener">Consultar</a>
-                </article>
-                <article class="card product-card reveal">
-                    <div class="product-tag">Referencia</div>
-                    <img loading="lazy" src="../Gallery/1785119337222.jpg" alt="Producto de referencia 05">
-                    <h3>Referencia 05</h3>
-                    <p>Ideal para ir agregando más productos sin saturar la vista.</p>
-                    <div class="product-meta"><span>Disponible</span><span class="product-price">Consultar</span></div>
-                    <a class="btn-secondary" href="https://wa.me/573053081374?text=Hola%20quiero%20consultar%20por%20la%20referencia%2005" target="_blank" rel="noopener">Consultar</a>
-                </article>
-                <article class="card product-card reveal">
-                    <div class="product-tag">Referencia</div>
-                    <img loading="lazy" src="../Gallery/1785119337232.jpg" alt="Producto de referencia 06">
-                    <h3>Referencia 06</h3>
-                    <p>Se adapta bien a un catálogo visual de productos electrónicos.</p>
-                    <div class="product-meta"><span>Disponible</span><span class="product-price">Consultar</span></div>
-                    <a class="btn-secondary" href="https://wa.me/573053081374?text=Hola%20quiero%20consultar%20por%20la%20referencia%2006" target="_blank" rel="noopener">Consultar</a>
-                </article>
-                <article class="card product-card reveal">
-                    <div class="product-tag">Referencia</div>
-                    <img loading="lazy" src="../Gallery/1785119337243.jpg" alt="Producto de referencia 07">
-                    <h3>Referencia 07</h3>
-                    <p>Formato ligero para un listado de productos más amplio.</p>
-                    <div class="product-meta"><span>Disponible</span><span class="product-price">Consultar</span></div>
-                    <a class="btn-secondary" href="https://wa.me/573053081374?text=Hola%20quiero%20consultar%20por%20la%20referencia%2007" target="_blank" rel="noopener">Consultar</a>
-                </article>
-                <article class="card product-card reveal">
-                    <div class="product-tag">Referencia</div>
-                    <img loading="lazy" src="../Gallery/1785119337254.jpg" alt="Producto de referencia 08">
-                    <h3>Referencia 08</h3>
-                    <p>Puede reutilizarse para múltiples categorías de productos.</p>
-                    <div class="product-meta"><span>Disponible</span><span class="product-price">Consultar</span></div>
-                    <a class="btn-secondary" href="https://wa.me/573053081374?text=Hola%20quiero%20consultar%20por%20la%20referencia%2008" target="_blank" rel="noopener">Consultar</a>
-                </article>
-                <article class="card product-card reveal">
-                    <div class="product-tag">Referencia</div>
-                    <img loading="lazy" src="../Gallery/1785119337267.jpg" alt="Producto de referencia 09">
-                    <h3>Referencia 09</h3>
-                    <p>Diseño pensado para que la galería se vea limpia y ordenada.</p>
-                    <div class="product-meta"><span>Disponible</span><span class="product-price">Consultar</span></div>
-                    <a class="btn-secondary" href="https://wa.me/573053081374?text=Hola%20quiero%20consultar%20por%20la%20referencia%2009" target="_blank" rel="noopener">Consultar</a>
-                </article>
-                <article class="card product-card reveal">
-                    <div class="product-tag">Referencia</div>
-                    <img loading="lazy" src="../Gallery/1785119337280.jpg" alt="Producto de referencia 10">
-                    <h3>Referencia 10</h3>
-                    <p>Espacio listo para incorporar nuevas fotos sin reestructurar el layout.</p>
-                    <div class="product-meta"><span>Disponible</span><span class="product-price">Consultar</span></div>
-                    <a class="btn-secondary" href="https://wa.me/573053081374?text=Hola%20quiero%20consultar%20por%20la%20referencia%2010" target="_blank" rel="noopener">Consultar</a>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section id="servicios">
-        <div class="container">
-            <p class="section-subtitle reveal">Nuestros servicios</p>
-            <h2 class="section-title reveal">Soporte técnico y asesoría especializada</h2>
-            <div class="services-grid" style="margin-top: 28px;">
-                <article class="service-preview-card reveal">
-                    <h3>Servicio Técnico Electrónico</h3>
-                    <p>Diagnóstico, reparación y mantenimiento de tarjetas electrónicas y dispositivos con criterio profesional.</p>
-                    <a href="servicios.html">Ver más</a>
-                </article>
-                <article class="service-preview-card reveal">
-                    <h3>Asesoría Técnica</h3>
-                    <p>Apoyo para elegir componentes, resolver fallas y planificar soluciones seguras para tu proyecto.</p>
-                    <a href="servicios.html">Ver más</a>
-                </article>
-                <article class="service-preview-card reveal">
-                    <h3>Venta de Componentes</h3>
-                    <p>Componentes electrónicos, módulos y kits disponibles con pedidos rápidos y atención por WhatsApp.</p>
-                    <a href="#productos">Ver productos</a>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section id="contacto">
-
-    <section id="contacto">
-        <div class="container contact">
-            <div class="contact-card reveal">
-                <p class="section-subtitle">Contacto</p>
-                <h2 class="section-title">Contáctanos por WhatsApp</h2>
-                <p class="muted">Para venta de componentes, servicio técnico o asesoría técnica, escríbenos y te respondemos rápido.</p>
-                <div class="contact-list">
-                    <div class="contact-item">📱 <a href="https://wa.me/573053081374" target="_blank" rel="noopener">WhatsApp: +57 305 3081374</a></div>
-                    <div class="contact-item">✉️ <span>Correo: contacto@invento.com</span></div>
-                    <div class="contact-item">📍 <span>Ubicación: Colombia</span></div>
+                <div class="hero-card">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80" alt="Catálogo de componentes y servicio técnico">
                 </div>
             </div>
-            <div class="form-card reveal">
-                <h3>Escribe tu solicitud</h3>
-                <form class="contact-form">
-                    <input type="text" name="name" placeholder="Nombre completo" required>
-                    <input type="email" name="email" placeholder="Correo electrónico" required>
-                    <input type="text" name="subject" placeholder="Servicio requerido">
-                    <textarea name="message" placeholder="Describe tu equipo o proyecto"></textarea>
-                    <button class="btn-primary" type="submit">Enviar por WhatsApp</button>
-                    <p id="whatsapp-status" class="muted" style="margin-top: 6px;"></p>
-                </form>
+        </section>
+
+        <section>
+            <div class="container intro-strip">
+                <div>
+                    <p class="section-subtitle">Lo que ofrecemos</p>
+                    <h2 class="section-title">Una propuesta clara para compra y acompañamiento técnico</h2>
+                    <p class="section-copy">La página está organizada para que el cliente vea primero los productos y luego los servicios, con información directa y fácil de consultar desde celular o tablet.</p>
+                </div>
+                <div class="summary-cards">
+                    <div class="summary-card">
+                        <strong>Catálogo de productos</strong>
+                        <span>Se puede alimentar desde tu base de datos en Vercel para mostrar fotos y productos automáticamente.</span>
+                    </div>
+                    <div class="summary-card">
+                        <strong>Servicios técnicos</strong>
+                        <span>Reparación, mantenimiento y mejora de equipos y módulos electrónicos.</span>
+                    </div>
+                    <div class="summary-card">
+                        <strong>Atención rápida</strong>
+                        <span>Consulta por WhatsApp para pedir información, disponibilidad o agendar una revisión.</span>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section id="productos">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <p class="section-subtitle">Productos</p>
+                        <h2 class="section-title">Catálogo de productos</h2>
+                    </div>
+                    <p class="section-copy">Este bloque está preparado para cargar imágenes y productos desde un endpoint de Vercel cuando quieras conectarlo a tu base de datos.</p>
+                </div>
+                <div id="product-grid" class="product-grid"></div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <p class="section-subtitle">Servicios</p>
+                        <h2 class="section-title">Servicios técnicos disponibles</h2>
+                    </div>
+                    <p class="section-copy">Atención enfocada en diagnóstico, reparación, mantenimiento y mejora de equipos electrónicos.</p>
+                </div>
+                <div class="service-preview-grid">
+                    <article class="service-card">
+                        <h3>Reparación y diagnóstico</h3>
+                        <p>Revisión de fallas y evaluación de equipos, módulos y placas electrónicas.</p>
+                        <ul>
+                            <li>Detección de fallas</li>
+                            <li>Reparación básica o especializada</li>
+                            <li>Pruebas funcionales</li>
+                        </ul>
+                    </article>
+                    <article class="service-card">
+                        <h3>Mantenimiento preventivo</h3>
+                        <p>Servicio para mantener equipos en buen estado y reducir fallas futuras.</p>
+                        <ul>
+                            <li>Inspección de conexiones</li>
+                            <li>Limieza y ajuste</li>
+                            <li>Orientación para prolongar su vida útil</li>
+                        </ul>
+                    </article>
+                    <article class="service-card">
+                        <h3>Asesoría técnica</h3>
+                        <p>Apoyo para seleccionar componentes y resolver dudas sobre montaje o funcionamiento.</p>
+                        <ul>
+                            <li>Selección de repuestos</li>
+                            <li>Orientación técnica</li>
+                            <li>Soporte para proyectos</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto">
+            <div class="container contact-grid">
+                <div class="contact-card">
+                    <p class="section-subtitle">Contacto</p>
+                    <h2 class="section-title">Escríbenos por WhatsApp</h2>
+                    <p class="section-copy">Para consultar productos, solicitar un servicio técnico o pedir asesoría, puedes escribirnos directamente y te respondemos con la información necesaria.</p>
+                    <div class="contact-list">
+                        <div>📱 <a href="https://wa.me/573053081374" target="_blank" rel="noopener">+57 305 3081374</a></div>
+                        <div>📍 <span>Santa Marta, Colombia</span></div>
+                    </div>
+                </div>
+                <div class="form-card">
+                    <h3>Solicita información</h3>
+                    <form class="contact-form">
+                        <input type="text" name="name" placeholder="Nombre completo" required>
+                        <input type="email" name="email" placeholder="Correo electrónico" required>
+                        <input type="text" name="subject" placeholder="Producto o servicio">
+                        <textarea name="message" placeholder="Describe lo que necesitas"></textarea>
+                        <button class="btn-primary" type="submit">Enviar por WhatsApp</button>
+                        <p id="whatsapp-status" style="color: var(--muted); font-size: 0.95rem;"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <div class="container footer-row">
             <div>
                 <strong>INVENTO</strong>
-                <div class="muted">Venta de componentes, servicio técnico y asesoría electrónica.</div>
+                <div>Venta de componentes y servicios técnicos.</div>
             </div>
             <div class="socials">
                 <a href="https://wa.me/573053081374" target="_blank" rel="noopener">WhatsApp</a>
                 <a href="#">Instagram</a>
                 <a href="#">LinkedIn</a>
             </div>
-            <div class="muted">© 2026 INVENTO. Todos los derechos reservados.</div>
+            <div>© 2026 INVENTO</div>
         </div>
     </footer>
 
     <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    if (entry.target.classList.contains('stat-number')) {
-                        animateNumber(entry.target);
-                    }
-                }
-            });
-        }, { threshold: 0.2 });
+        async function renderProducts() {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '<div class="empty-state">Cargando productos...</div>';
 
-        document.querySelectorAll('.reveal, .stat-number').forEach(el => observer.observe(el));
+            try {
+                const response = await fetch('/api/products');
+                if (!response.ok) throw new Error('Sin respuesta');
+                const products = await response.json();
+
+                if (Array.isArray(products) && products.length) {
+                    grid.innerHTML = products.map(product => {
+                        const image = product.image || product.image_url || '';
+                        const availableLabel = product.available === false ? 'Agotado' : 'Disponible';
+                        const priceText = product.price ? `${product.price}` : 'Consultar por WhatsApp';
+
+                        return `
+                            <article class="product-card">
+                                <img src="${image}" alt="${product.title || 'Producto'}" loading="lazy" onerror="this.style.display='none'">
+                                <h3>${product.title || 'Producto disponible'}</h3>
+                                <p>${product.description || 'Consulta disponibilidad y características.'}</p>
+                                <div class="price">${availableLabel} · ${priceText}</div>
+                            </article>
+                        `;
+                    }).join('');
+                    return;
+                }
+
+                grid.innerHTML = '<div class="empty-state">Aún no hay productos disponibles desde la API. Cuando la base de datos envíe datos, aparecerán aquí automáticamente.</div>';
+            } catch (error) {
+                console.info('No se pudieron cargar los productos desde la API:', error);
+                grid.innerHTML = '<div class="empty-state">No se pudo cargar el catálogo desde la API. Revisa la conexión con Vercel o la base de datos.</div>';
+            }
+        }
+
+        renderProducts();
 
         const form = document.querySelector('.contact-form');
         const status = document.getElementById('whatsapp-status');
@@ -450,34 +329,16 @@
             const email = (data.get('email') || '').trim();
             const subject = (data.get('subject') || '').trim();
             const message = (data.get('message') || '').trim();
-
-            const texto = [
-                `Hola INVENTO, soy ${name || 'un cliente'}\.`,
+            const text = [
+                `Hola INVENTO, soy ${name || 'un cliente'}.`,
                 email ? `Correo: ${email}` : '',
-                subject ? `Asunto: ${subject}` : '',
+                subject ? `Producto o servicio: ${subject}` : '',
                 message ? `Mensaje: ${message}` : ''
             ].filter(Boolean).join('\n');
-
-            const url = `https://wa.me/573053081374?text=${encodeURIComponent(texto)}`;
-            window.open(url, '_blank', 'noopener,noreferrer');
-            status.textContent = 'Se abrió WhatsApp con tu solicitud lista para enviar.';
+            window.open(`https://wa.me/573053081374?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+            status.textContent = 'Se abrió WhatsApp con tu mensaje listo para enviar.';
             form.reset();
         });
-
-        function animateNumber(el) {
-            const target = Number(el.dataset.target || 0);
-            const duration = 1200;
-            const start = performance.now();
-            const step = (now) => {
-                const progress = Math.min((now - start) / duration, 1);
-                const value = Math.floor(progress * target);
-                el.textContent = `${value}${target >= 100 ? '+' : ''}`;
-                if (progress < 1) requestAnimationFrame(step);
-                else el.textContent = `${target}${target >= 100 ? '+' : ''}`;
-            };
-            requestAnimationFrame(step);
-            el.dataset.animated = 'true';
-        }
     </script>
 </body>
 </html>

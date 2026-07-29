@@ -3,56 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servicios Electrónicos | INVENTO</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="description" content="Servicios técnicos de reparación, mantenimiento y mejora electrónica.">
+    <title>Servicios técnicos | INVENTO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #06121f;
+            --bg: #07111f;
             --panel: rgba(255,255,255,0.06);
-            --border: rgba(255,255,255,0.13);
+            --border: rgba(255,255,255,0.14);
             --text: #f7fbff;
-            --muted: #b5c2d6;
+            --muted: #b8c7da;
             --cyan: #2dd4ff;
             --orange: #ff9f1c;
         }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Manrope', sans-serif; background: radial-gradient(circle at top left, rgba(45,212,255,0.16), transparent 28%), var(--bg); color: var(--text); min-height: 100vh; }
+        img { display: block; max-width: 100%; }
         a { color: inherit; text-decoration: none; }
-        header { position: fixed; inset: 0 0 auto 0; display: flex; align-items: center; justify-content: space-between; padding: 18px 7%; background: rgba(7,17,31,0.94); border-bottom: 1px solid var(--border); z-index: 1000; }
-        .logo { display: flex; align-items: center; gap: 10px; font-family: 'Poppins', sans-serif; font-weight: 800; text-transform: uppercase; }
-        .logo span { color: var(--cyan); }
-        nav ul { display: flex; list-style: none; gap: 24px; }
-        nav a { color: var(--muted); transition: color 0.3s ease; }
-        nav a:hover { color: var(--cyan); }
-        .btn-nav { padding: 10px 18px; border-radius: 999px; background: var(--orange); color: #07111f; font-weight: 700; }
-        section { padding: 140px 7% 80px; }
+        section { padding: 84px 6%; }
         .container { max-width: 1120px; margin: 0 auto; }
-        .section-subtitle { color: var(--cyan); text-transform: uppercase; letter-spacing: 0.3em; font-size: 0.8rem; margin-bottom: 12px; font-weight: 700; }
-        .section-title { font-family: 'Poppins', sans-serif; font-size: 2.8rem; margin-bottom: 18px; }
-        .hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; margin-bottom: 40px; }
-        .hero p { color: var(--muted); max-width: 620px; margin-top: 20px; line-height: 1.8; }
-        .hero-card { padding: 28px; border-radius: 28px; background: rgba(255,255,255,0.06); border: 1px solid var(--border); }
-        .hero-card img { width: 100%; border-radius: 20px; height: 420px; object-fit: cover; }
-        .services-grid { display: grid; gap: 24px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-        .service-card { padding: 28px; border-radius: 24px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); transition: transform 0.3s ease, border-color 0.3s ease; }
-        .service-card:hover { transform: translateY(-6px); border-color: var(--cyan); }
-        .service-card h3 { margin-bottom: 14px; }
-        .service-card p { color: var(--muted); line-height: 1.75; }
-        .service-card ul { margin-top: 18px; padding-left: 18px; color: var(--muted); }
-        .service-card li { margin-bottom: 10px; }
-        .service-card a { display: inline-flex; margin-top: 18px; color: var(--cyan); font-weight: 700; }
-        .feature-grid { display: grid; gap: 20px; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 40px; }
-        .feature-card { padding: 24px; border-radius: 22px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); }
-        .feature-card h4 { margin-bottom: 12px; }
-        .feature-card p { color: var(--muted); }
-        footer { padding: 36px 7% 40px; border-top: 1px solid var(--border); text-align: center; color: var(--muted); }
-        @media (max-width: 1024px) { .hero, .services-grid, .feature-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) { header { flex-direction: column; align-items: stretch; gap: 14px; } section { padding-top: 180px; } }
+        .section-subtitle { color: var(--cyan); text-transform: uppercase; letter-spacing: 0.28em; font-size: 0.78rem; font-weight: 700; margin-bottom: 10px; }
+        .section-title { font-family: 'Poppins', sans-serif; font-size: clamp(1.7rem, 2.8vw, 2.3rem); margin-bottom: 10px; }
+        .section-copy { color: var(--muted); max-width: 720px; }
+        .btn-primary, .btn-secondary, .btn-nav { display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; font-weight: 700; transition: transform 0.25s ease; }
+        .btn-primary { padding: 13px 22px; background: var(--orange); color: #07111f; }
+        .btn-primary:hover { transform: translateY(-2px); }
+        .btn-secondary { padding: 13px 22px; border: 1px solid var(--border); color: var(--text); background: rgba(255,255,255,0.03); }
+        .btn-nav { padding: 10px 16px; background: var(--orange); color: #07111f; }
+
+        header { position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 6%; background: rgba(7,17,31,0.94); border-bottom: 1px solid var(--border); backdrop-filter: blur(10px); }
+        .logo { display: flex; align-items: center; gap: 10px; font-family: 'Poppins', sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; }
+        .logo img { width: 42px; height: 42px; border-radius: 12px; object-fit: cover; }
+        .logo span { color: var(--cyan); }
+        nav ul { display: flex; flex-wrap: wrap; gap: 18px; list-style: none; }
+        nav a { color: var(--muted); }
+        nav a:hover { color: var(--cyan); }
+
+        .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 24px; align-items: center; }
+        .hero p { color: var(--muted); margin-top: 12px; }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+        .hero-card { padding: 16px; border-radius: 24px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); }
+        .hero-card img { width: 100%; height: 320px; object-fit: cover; border-radius: 18px; }
+
+        .service-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 24px; }
+        .service-card { padding: 22px; border-radius: 20px; background: var(--panel); border: 1px solid var(--border); }
+        .service-card h3 { margin-bottom: 10px; }
+        .service-card p, .service-card li { color: var(--muted); }
+        .service-card ul { padding-left: 18px; margin-top: 10px; }
+        .service-card li { margin-bottom: 8px; }
+
+        .steps-grid { display: grid; gap: 16px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 24px; }
+        .step-card { padding: 20px; border-radius: 18px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); }
+        .step-card h4 { margin-bottom: 8px; }
+        .step-card p { color: var(--muted); }
+
+        footer { padding: 28px 6% 44px; border-top: 1px solid var(--border); color: var(--muted); text-align: center; }
+
+        @media (max-width: 900px) {
+            .hero-grid, .service-grid, .steps-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            header { flex-direction: column; align-items: flex-start; }
+            .hero-actions { flex-direction: column; align-items: stretch; }
+            .hero-card img { height: 240px; }
+        }
     </style>
 </head>
 <body>
     <header>
-        <a class="logo" href="index.html"><img src="LOGOTIPO INVENTO.png" alt="Logo INVENTO" width="44" height="44"><span>INVENTO</span></a>
+        <a class="logo" href="index.html"><img src="LOGOTIPO INVENTO.png" alt="Logo INVENTO"><span>INVENTO</span></a>
         <nav>
             <ul>
                 <li><a href="index.html">Inicio</a></li>
@@ -64,55 +85,54 @@
         <a class="btn-nav" href="https://wa.me/573053081374" target="_blank" rel="noopener">WhatsApp</a>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <p class="section-subtitle">Servicios</p>
-            <h1 class="section-title">Soporte técnico y asesoría para tu proyecto electrónico</h1>
-            <p>Brindamos diagnóstico, reparación, mantenimiento y orientación para componentes y dispositivos electrónicos. Pide tu servicio por WhatsApp y recibe atención personalizada.</p>
-            <div style="display:flex; gap: 14px; flex-wrap: wrap; margin-top: 24px;">
-                <a class="btn-primary" href="https://wa.me/573053081374?text=Hola%20quiero%20información%20sobre%20servicios%20técnicos" target="_blank" rel="noopener" style="padding:14px 24px; background:var(--orange); color:#07111f; border-radius:999px; font-weight:700;">Consultar por WhatsApp</a>
-                <a class="btn-secondary" href="index.html#productos" style="padding:14px 24px; border:1px solid var(--border); color:var(--text); border-radius:999px;">Ver productos</a>
+    <section>
+        <div class="container hero-grid">
+            <div>
+                <p class="section-subtitle">Servicios técnicos</p>
+                <h1 class="section-title">Reparación, mantenimiento y mejora de equipos electrónicos</h1>
+                <p>Brindamos atención para diagnóstico, reparación y mantenimiento de equipos y módulos electrónicos, con orientación clara para cada caso.</p>
+                <div class="hero-actions">
+                    <a class="btn-primary" href="https://wa.me/573053081374?text=Hola%20quiero%20información%20sobre%20servicios%20técnicos" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+                    <a class="btn-secondary" href="index.html#productos">Ver productos</a>
+                </div>
             </div>
-        </div>
-        <div class="hero-card">
-            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80" alt="Servicio técnico electrónico" />
+            <div class="hero-card">
+                <img src="Banner.png" alt="Servicio técnico electrónico">
+            </div>
         </div>
     </section>
 
     <section>
         <div class="container">
-            <div class="section-subtitle">Que ofrecemos</div>
+            <p class="section-subtitle">Qué se ofrece</p>
             <h2 class="section-title">Servicios disponibles</h2>
-            <div class="services-grid">
+            <div class="service-grid">
                 <article class="service-card">
-                    <h3>Servicio Técnico Electrónico</h3>
-                    <p>Diagnóstico completo, reparación y mantenimiento de tarjetas, módulos y equipos electrónicos.</p>
+                    <h3>Diagnóstico técnico</h3>
+                    <p>Revisión de fallas, funcionamiento y estado general de equipos o módulos.</p>
                     <ul>
-                        <li>Revisión de fallas y pruebas de componentes</li>
-                        <li>Reparación de placas y soldadura profesional</li>
-                        <li>Pruebas funcionales antes de entregar</li>
+                        <li>Evaluación inicial</li>
+                        <li>Detección de fallas</li>
+                        <li>Orientación de solución</li>
                     </ul>
-                    <a href="https://wa.me/573053081374?text=Hola%20quiero%20un%20servicio%20técnico%20electrónico">Contratar por WhatsApp →</a>
                 </article>
                 <article class="service-card">
-                    <h3>Diagnóstico y Mantenimiento</h3>
-                    <p>Evaluamos el estado de tus equipos y realizamos mantenimiento preventivo para prolongar su vida útil.</p>
+                    <h3>Reparación y mantenimiento</h3>
+                    <p>Atención para reparar, ajustar y mantener equipos electrónicos en buen estado.</p>
                     <ul>
-                        <li>Inspección de hardware y conexiones</li>
-                        <li>Limpieza y ajuste de componentes</li>
-                        <li>Recomendaciones de mantenimiento periódicas</li>
+                        <li>Mantenimiento preventivo</li>
+                        <li>Reparación de placas y módulos</li>
+                        <li>Pruebas funcionales</li>
                     </ul>
-                    <a href="https://wa.me/573053081374?text=Hola%20quiero%20programar%20un%20diagnóstico%20o%20mantenimiento">Solicitar por WhatsApp →</a>
                 </article>
                 <article class="service-card">
-                    <h3>Asesoría Técnica</h3>
-                    <p>Asesoría experta para elegir componentes, resolver fallas y planificar soluciones seguras y eficientes.</p>
+                    <h3>Asesoría técnica</h3>
+                    <p>Apoyo para elegir componentes, resolver dudas y planificar mejoras o cambios.</p>
                     <ul>
-                        <li>Selección de componentes y módulos</li>
-                        <li>Soporte en diseño y montaje</li>
-                        <li>Guía para proyectos académicos o industriales</li>
+                        <li>Selección de repuestos</li>
+                        <li>Orientación técnica</li>
+                        <li>Soporte para proyectos</li>
                     </ul>
-                    <a href="https://wa.me/573053081374?text=Hola%20quiero%20una%20asesoría%20técnica">Pedir asesoría por WhatsApp →</a>
                 </article>
             </div>
         </div>
@@ -120,31 +140,27 @@
 
     <section>
         <div class="container">
-            <div class="section-subtitle">Ventajas</div>
-            <h2 class="section-title">Por qué elegir nuestros servicios</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h4>Atención rápida</h4>
-                    <p>Responemos tus consultas por WhatsApp para que gestiones tu compra o servicio sin demoras.</p>
+            <p class="section-subtitle">Cómo trabajamos</p>
+            <h2 class="section-title">Proceso simple y claro</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <h4>1. Consulta</h4>
+                    <p>Describe el problema, equipo o componente que necesitas revisar.</p>
                 </div>
-                <div class="feature-card">
-                    <h4>Soporte especializado</h4>
-                    <p>Contamos con experiencia en electrónica, reparación de placas y proyectos de automatización.</p>
+                <div class="step-card">
+                    <h4>2. Evaluación</h4>
+                    <p>Revisamos el estado y te indicamos la mejor opción para reparar o mejorar.</p>
                 </div>
-                <div class="feature-card">
-                    <h4>Soluciones prácticas</h4>
-                    <p>Trabajamos con soluciones concretas para que tu equipo vuelva a funcionar o tu proyecto avance.</p>
-                </div>
-                <div class="feature-card">
-                    <h4>Asesoría personalizada</h4>
-                    <p>Te orientamos en la selección de componentes y en la estrategia técnica adecuada.</p>
+                <div class="step-card">
+                    <h4>3. Atención</h4>
+                    <p>Te confirmamos el servicio o la solución más adecuada por WhatsApp.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="container">© 2026 INVENTO. Venta de componentes, servicio técnico y asesoría electrónica. WhatsApp: +57 305 3081374</div>
+        <div class="container">© 2026 INVENTO. Venta de componentes y servicios técnicos.</div>
     </footer>
 </body>
 </html>
